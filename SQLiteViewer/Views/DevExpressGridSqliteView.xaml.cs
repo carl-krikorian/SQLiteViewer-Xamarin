@@ -38,6 +38,7 @@ namespace SQLiteViewer.Views
         public void Button_Clicked(object sender, EventArgs e)
         {
             App.Database.ExecuteInput(InputEntry.Text);
+            DJ.Columns.Clear();
             DJ.ItemsSource = App.Database.SelectDataTable;
         }
     }

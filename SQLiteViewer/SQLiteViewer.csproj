@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <Company>Carl Krikorian</Company>
+    <PackageId>BMBGroup.Util.SQLiteViewer</PackageId>
+    <Authors>Carl Krikorian</Authors>
   </PropertyGroup>
 
   <ItemGroup>
