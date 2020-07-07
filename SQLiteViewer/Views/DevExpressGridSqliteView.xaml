@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SQLiteViewer.Views.XamerinFormsDataGridView"
+             xmlns:local="clr-namespace:SQLiteViewer.ViewModels"
+             xmlns:dxGrid="clr-namespace:DevExpress.Mobile.DataGrid;assembly=DevExpress.Mobile.Grid.v18.2"
+             >
+    <!-- xmlns:conv="clr-namespace:DataGridSample.Views.Converters;assembly=DataGridSample" -->
+    <ContentPage.BindingContext>
+        <local:SQLiteViewerViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout 
+            HorizontalOptions="Start" 
+            VerticalOptions="Start">
+            <Editor x:Name="InputEntry" Placeholder="Input Command" WidthRequest="200" HeightRequest="150" 
+                   Text="{Binding EntryString}" BackgroundColor="WhiteSmoke"/>
+            <Button x:Name="testButtton" Text="Submit" Clicked="Button_Clicked" WidthRequest="50"
+                    BackgroundColor="Aqua"/>
+            <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <dxGrid:GridControl x:Name="DJ" AllowEditRows="False" AllowDeleteRows="False"
+                                    IsPullToRefreshEnabled="True" >
+                </dxGrid:GridControl>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
