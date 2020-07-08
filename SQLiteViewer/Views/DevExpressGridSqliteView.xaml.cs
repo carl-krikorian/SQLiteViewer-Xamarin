@@ -24,23 +24,9 @@ namespace SQLiteViewer.Views
             InitializeComponent();
             ThemeManager.ThemeName = Themes.Light;
             DJ.ColumnsAutoWidth = false;
-
             //ThemeFontAttributes myFont1 = new ThemeFontAttributes("Verdana", 20, FontAttributes.None, Color.Black);
             //ThemeManager.Theme.CellCustomizer.Font = myFont1;
             //DJ.RowHeight = 100;
-            ObservableCollection<Item> items = new ObservableCollection<Item>();
-            /*for (int i = 0; i < 100; i++)
-                items.Add(new Item { Id = i.ToString(), Text = "First item", Description = "This is an item description." });
-            DataTable d = new DataTable();
-            DJ.ItemsSource = items;*/
-
         }
-
-        /*public void Button_Clicked(object sender, EventArgs e)
-        {
-            App.Database.ExecuteInput(InputEntry.Text);
-            DJ.Columns.Clear();
-            DJ.ItemsSource = App.Database.SelectDataTable;
-        }*/
     }
 }

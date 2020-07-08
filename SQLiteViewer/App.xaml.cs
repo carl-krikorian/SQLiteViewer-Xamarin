@@ -25,7 +25,6 @@ namespace SQLiteViewer
         public App()
         {
             InitializeComponent();
-
             //DependencyService.Register<MockDataStore>();
             //MainPage = new AppShell();
             MainPage = new XamerinFormsDataGridView();
