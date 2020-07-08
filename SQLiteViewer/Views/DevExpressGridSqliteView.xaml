@@ -19,11 +19,11 @@
             VerticalOptions="Start">
             <Editor x:Name="InputEntry" Placeholder="Input Command" WidthRequest="200" HeightRequest="150" 
                    Text="{Binding EntryString}" BackgroundColor="WhiteSmoke"/>
-            <Button x:Name="testButtton" Text="Submit" Clicked="Button_Clicked" WidthRequest="50"
+            <Button x:Name="testButtton" Text="Submit" Command="{Binding ExecuteInputCommand}" WidthRequest="50"
                     BackgroundColor="Aqua"/>
             <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <dxGrid:GridControl x:Name="DJ" AllowEditRows="False" AllowDeleteRows="False"
-                                    IsPullToRefreshEnabled="True" >
+                                    IsPullToRefreshEnabled="True" ItemsSource="{Binding DisplayDT }">
                 </dxGrid:GridControl>
             </ScrollView>
         </StackLayout>
