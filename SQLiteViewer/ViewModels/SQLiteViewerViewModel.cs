@@ -16,7 +16,8 @@ namespace SQLiteViewer.ViewModels
 {
     public class SQLiteViewerViewModel : INotifyPropertyChanged
     {
-                public SQLiteViewerViewModel()
+        //Keep the "please enter sql query above" because populating the datagrid at the begining makes it faster to load your first table 
+        public SQLiteViewerViewModel()
         {
             ExecuteInputCommand = new Command(DBExecuteInput);
             DisplayDT = new DataTable();
