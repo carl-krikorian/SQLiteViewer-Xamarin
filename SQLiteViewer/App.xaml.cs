@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using SQLiteViewer.Services;
 using SQLiteViewer.Views;
 using SQLiteViewer.Models;
 

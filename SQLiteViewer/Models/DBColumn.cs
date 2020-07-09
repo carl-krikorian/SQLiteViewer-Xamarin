@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
+
+/*
+ * class used within DBTable to retain information from Database Table Columns when read. Is only used in DBTable.
+ * saves metadata of columns by using a dictionary to map field names to field datatypes (both as strings)
+ */
+
 namespace SQLiteViewer.Models
 {
     public class DBColumn

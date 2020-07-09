@@ -8,7 +8,6 @@
              xmlns:local="clr-namespace:SQLiteViewer.ViewModels"
              xmlns:dxGrid="clr-namespace:DevExpress.Mobile.DataGrid;assembly=DevExpress.Mobile.Grid.v18.2"
              >
-    <!-- xmlns:conv="clr-namespace:DataGridSample.Views.Converters;assembly=DataGridSample" -->
     <ContentPage.BindingContext>
         <local:SQLiteViewerViewModel/>
     </ContentPage.BindingContext>

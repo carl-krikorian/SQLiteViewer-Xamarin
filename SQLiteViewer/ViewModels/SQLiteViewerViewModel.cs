@@ -16,6 +16,16 @@ namespace SQLiteViewer.ViewModels
 {
     public class SQLiteViewerViewModel : INotifyPropertyChanged
     {
+                public SQLiteViewerViewModel()
+        {
+            ExecuteInputCommand = new Command(DBExecuteInput);
+            DisplayDT = new DataTable();
+            DataColumn dc = new DataColumn("Please Enter an", typeof(String));
+            DisplayDT.Columns.Add(dc);
+            DataRow dr = DisplayDT.NewRow();
+            dr[0] = "SQL Querie above";
+            DisplayDT.Rows.Add(dr);
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
@@ -34,16 +44,6 @@ namespace SQLiteViewer.ViewModels
                     OnPropertyChanged(nameof(DisplayDT));
                 }
             }
-        }
-        public SQLiteViewerViewModel()
-        {
-            ExecuteInputCommand = new Command(DBExecuteInput);
-            DisplayDT = new DataTable();
-            DataColumn dc = new DataColumn("Please Enter an", typeof(String));
-            DisplayDT.Columns.Add(dc);
-            DataRow dr = DisplayDT.NewRow();
-            dr[0] = "SQL Querie above";
-            DisplayDT.Rows.Add(dr);
         }
         public string EntryString { get; set; }
         public ICommand ExecuteInputCommand { get; }

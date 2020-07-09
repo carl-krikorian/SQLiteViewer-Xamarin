@@ -15,11 +15,11 @@ namespace SQLiteViewer.Models
 {
     public class SDatabase
     {
-        public SqliteConnection _database;
-        public Dictionary<string, DBTable> DatabaseInfo;
+        public SqliteConnection _database;// is the connection to the sqlite Database. Change string dbPath in constructor to access other Databases.
+        public Dictionary<string, DBTable> DatabaseInfo; //SDatabase is a dictionary mapping the table name to the DBTable Object
         public SqliteDataReader reader;
-        public DataTable SelectDataTable;
-        public string LastSelectStatement;
+        public DataTable SelectDataTable; // is returned and bound to the dataGrid
+        public string LastSelectStatement; // is used to refresh the datagrid after update, delete and insert
         public SDatabase()
         {
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SampleSQLite.db3");
@@ -27,6 +27,7 @@ namespace SQLiteViewer.Models
             DatabaseInfo = new Dictionary<string, DBTable>();
             SelectDataTable = new DataTable();
         }
+        //Reads the scehma of the table being accessed and saves it into the 
         public bool readSchemaOf(string tableName)
         {
             _database.Open();
@@ -39,7 +40,8 @@ namespace SQLiteViewer.Models
             }
             _database.Close();
             return true;
-        }
+        } 
+        //creates a DBTable and DBColumn from table being accessed and populates DBTable dictionary
         public string GetReaderSchema(SqliteDataReader reader)
         {
             var builder = new StringBuilder();
@@ -78,6 +80,7 @@ namespace SQLiteViewer.Models
             var debugString = builder.ToString();
             return debugString;
         }
+        //Sets the information in DBColumn
         public StringBuilder setColumnInfoToDict(DataRow column, DBColumn dBColumn)
         {
             var builder = new StringBuilder();
@@ -115,6 +118,7 @@ namespace SQLiteViewer.Models
             builder.AppendLine();
             return builder;
         }
+        //Takes the SQL Query and processes it. Sets the values of SelectDataTable and SelectDataTable 
         public bool ExecuteInput(string inputString)
         {
             if (string.IsNullOrWhiteSpace(inputString))
@@ -123,7 +127,7 @@ namespace SQLiteViewer.Models
             {
                 var firstWord = Regex.Replace(inputString.Split()[0], @"[^0-9a-zA-Z\ ]+", "");
                 string[] split = inputString.Split(' ');
-
+                //parses the input String to see which operation is being used as well as 
                 if (firstWord.ToLower() == "select")
                 {
                     int TableIndex;
@@ -134,10 +138,12 @@ namespace SQLiteViewer.Models
                     LastSelectStatement = inputString;
                     ExecuteInputSelect(inputString, split[TableIndex+1]);
                 }
+                //display schema is just used to save everything into DatabaseInfo then display the necessary info
                 else if (firstWord.ToLower() == "displayschema")
                 {
                     readSchemaOf(split[1]);
                 }
+                //makes sure the schema has been properly saved in DatabaseInfo
                 else if (firstWord.ToLower() == "test")
                 {
                     foreach (KeyValuePair<string, DBColumn> kvp in DatabaseInfo["Animal"].Columns)
@@ -146,6 +152,8 @@ namespace SQLiteViewer.Models
                     }
                     string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SampleSQLite.db3"); ;
                 }
+                //for these operations after executing the requested query, the last select statement is used to reload the page after
+                //the alert is displayed with the number of rows affected
                 else if (firstWord.ToLower() == "update")
                 {
                     _database.Open();
@@ -203,6 +211,7 @@ namespace SQLiteViewer.Models
             }
             return false;
         }
+        //Is used to process the Select query
         public bool ExecuteInputSelect(string inputString, string TableName)
         {
             ClearSelectDataTable();
@@ -217,6 +226,7 @@ namespace SQLiteViewer.Models
             _database.Close();
             return true;
         }
+        //processes the select string and returns an array of the column names (isn't really used)
         public string[] SelectStringProcess(string inputString)
         {
             string columns;
@@ -229,6 +239,7 @@ namespace SQLiteViewer.Models
                 Debug.WriteLine(s + "\n");*/
             return columnsArray;
         }
+        //Clears SelectDataTable for inputing new information
         bool ClearSelectDataTable()
         {
             SelectDataTable.Constraints.Clear();
