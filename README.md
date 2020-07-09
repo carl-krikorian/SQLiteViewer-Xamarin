@@ -1,5 +1,5 @@
 # SQLiteViewer-Xamarin
-# This is an SQLiteViewer for Xamarin. Version 1.0.2
+** This is an SQLiteViewer for Xamarin. Version 1.0.2** <br />
 Should you want to try your own SQLite database in your phone instead of creating one, you can change the path in the SDatabase constructor by renaming dbPath in the constructor.<br />
 By entering an sqlQuery into the editor and submiting it using the submit button you can manipulate your SQLite Database. <br />
 Note that all the SQLite Queries supported are that of Microsoft.Data.SQLite. <br />
