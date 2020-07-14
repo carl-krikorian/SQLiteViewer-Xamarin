@@ -1,4 +1,5 @@
 ﻿using DevExpress.Core;
+using DevExpress.Mobile.DataGrid.Internal;
 using DevExpress.Mvvm.Native;
 using SQLiteViewer.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -39,8 +41,9 @@ namespace SQLiteViewer.ViewModels
             get { return dt; }
             set
             {
-                if(dt != value)
+                if (dt != value)
                 {
+                    dt = new DataTable();
                     dt = value;
                     OnPropertyChanged(nameof(DisplayDT));
                 }
@@ -49,12 +52,25 @@ namespace SQLiteViewer.ViewModels
         public string EntryString { get; set; }
         public ICommand ExecuteInputCommand { get; }
         public bool isRefreshing { get; set; }
-        public void DBExecuteInput() {
-            Debug.WriteLine("Command pressed");
+        public void DBExecuteInput() 
+        {
             App.Database.ExecuteInput(EntryString);
-
             DisplayDT = new DataTable();
             DisplayDT = App.Database.SelectDataTable;
+            Debug.WriteLine("end of command");
         }
+        /*private bool busy = false;
+        public bool IsBusy
+        {
+            get { return busy; }
+            set
+            {
+                if (busy == value)
+                    return;
+
+                busy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }*/
     }
 }
